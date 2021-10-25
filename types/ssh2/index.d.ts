@@ -73,6 +73,8 @@ export interface Channel extends stream.Duplex {
     destroy(): void;
 }
 
+type ClientChannelExitEventListener = (exitCode: number | null, signalName?: string, didCoreDump?: boolean, description?: string) => void;
+
 export interface ClientChannel extends Channel {
     /** Standard error for the Channel. */
     stderr: stream.Readable;
