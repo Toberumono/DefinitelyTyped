@@ -103,14 +103,14 @@ export interface ClientChannel extends Channel {
     /**
      * Emitted once the channel is completely closed on both the client and the server.
      */
-    on(event: "close", listener: () => void): this;
+    on(event: "close", listener: (() => void)|ClientChannelExitEventListener): this;
 
     /**
      * An `exit` event *may* (the SSH2 spec says it is optional) be emitted when the process
      * finishes. If the process finished normally, the process's return value is passed to
      * the `exit` callback.
      */
-    on(event: "exit", listener: (exitCode: number | null, signalName?: string, didCoreDump?: boolean, description?: string) => void): this;
+    on(event: "exit", listener: ClientChannelExitEventListener): this;
 
     on(event: string | symbol, listener: Function): this;
 }
